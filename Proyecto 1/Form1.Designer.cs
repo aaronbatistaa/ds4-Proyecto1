@@ -37,7 +37,7 @@
             rtBoxHistory = new RichTextBox();
             btnClearHistory = new Button();
             panel1 = new Panel();
-            btnMenu = new Button();
+            btnShowResults = new Button();
             btnHistory = new Button();
             txtDisplayProvi = new TextBox();
             txtDisplay = new TextBox();
@@ -181,7 +181,7 @@
             // 
             // panel1
             // 
-            panel1.Controls.Add(btnMenu);
+            panel1.Controls.Add(btnShowResults);
             panel1.Controls.Add(btnHistory);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 35);
@@ -190,18 +190,19 @@
             panel1.Size = new Size(325, 40);
             panel1.TabIndex = 2;
             // 
-            // btnMenu
+            // btnShowResults
             // 
-            btnMenu.Dock = DockStyle.Left;
-            btnMenu.FlatAppearance.BorderSize = 0;
-            btnMenu.FlatAppearance.MouseOverBackColor = Color.FromArgb(54, 54, 54);
-            btnMenu.FlatStyle = FlatStyle.Flat;
-            btnMenu.Image = Properties.Resources.meun;
-            btnMenu.Location = new Point(0, 0);
-            btnMenu.Name = "btnMenu";
-            btnMenu.Size = new Size(50, 40);
-            btnMenu.TabIndex = 2;
-            btnMenu.UseVisualStyleBackColor = true;
+            btnShowResults.Dock = DockStyle.Left;
+            btnShowResults.FlatAppearance.BorderSize = 0;
+            btnShowResults.FlatAppearance.MouseOverBackColor = Color.FromArgb(54, 54, 54);
+            btnShowResults.FlatStyle = FlatStyle.Flat;
+            btnShowResults.Location = new Point(0, 0);
+            btnShowResults.Name = "btnShowResults";
+            btnShowResults.Size = new Size(169, 40);
+            btnShowResults.TabIndex = 2;
+            btnShowResults.Text = "Mostrar Resultados";
+            btnShowResults.UseVisualStyleBackColor = true;
+            btnShowResults.Click += btnShowResults_Click;
             // 
             // btnHistory
             // 
@@ -649,6 +650,7 @@
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Calculadora";
+            Load += Form1_Load;
             PnlTitle.ResumeLayout(false);
             PnlHistory.ResumeLayout(false);
             panel1.ResumeLayout(false);
@@ -664,7 +666,7 @@
         private Button button2;
         private Button button1;
         private Panel panel1;
-        private Button btnMenu;
+        private Button btnShowResults;
         private Button btnHistory;
         private TextBox txtDisplayProvi;
         private TextBox txtDisplay;

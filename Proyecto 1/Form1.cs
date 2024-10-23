@@ -29,6 +29,11 @@ namespace Proyecto_1
             SendMessage(Handle, 0x112, 0xf012, 0);
         }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            Conexion c = new Conexion();
+        }
+
         private void btnNum_Click(object sender, EventArgs e)
         {
             if (txtDisplay.Text == "0" || enterValue) txtDisplay.Text = string.Empty;
@@ -60,46 +65,61 @@ namespace Proyecto_1
 
         private void btnEqual_Click(object sender, EventArgs e)
         {
-            secNum = txtDisplay.Text;       //guarda el último valor
+            secNum = txtDisplay.Text;       // guarda el último valor
             txtDisplayProvi.Text = $"{txtDisplayProvi.Text} {txtDisplay.Text} =";
+
             if (txtDisplay.Text != string.Empty)
             {
                 if (txtDisplay.Text == "0") txtDisplayProvi.Text = string.Empty;
-                switch (operation)        //recibe el valor del texto del botón para saber la operacion
+                string operacion = $"{fstNum} {secNum}";
+                decimal resultadoDecimal = 0;
+
+                switch (operation)        // recibe el valor del texto del botón para saber la operacion
                 {
                     case "+":
-                        txtDisplay.Text = (result + Double.Parse(txtDisplay.Text)).ToString();  //muestra como la suma del resultado o primero número con el último ingresado 
-                        rtBoxHistory.AppendText($"{fstNum} {secNum} = {txtDisplay.Text} \n");    //guarda el calculo en el historial
+                        resultadoDecimal = (decimal)(result + Double.Parse(txtDisplay.Text));
+                        txtDisplay.Text = resultadoDecimal.ToString();
+                        rtBoxHistory.AppendText($"{operacion} = {txtDisplay.Text} \n");
                         break;
                     case "-":
-                        txtDisplay.Text = (result - Double.Parse(txtDisplay.Text)).ToString();
-                        rtBoxHistory.AppendText($"{fstNum} {secNum} = {txtDisplay.Text} \n");
+                        resultadoDecimal = (decimal)(result - Double.Parse(txtDisplay.Text));
+                        txtDisplay.Text = resultadoDecimal.ToString();
+                        rtBoxHistory.AppendText($"{operacion} = {txtDisplay.Text} \n");
                         break;
                     case "x":
-                        txtDisplay.Text = (result * Double.Parse(txtDisplay.Text)).ToString();
-                        rtBoxHistory.AppendText($"{fstNum} {secNum} = {txtDisplay.Text} \n");
+                        resultadoDecimal = (decimal)(result * Double.Parse(txtDisplay.Text));
+                        txtDisplay.Text = resultadoDecimal.ToString();
+                        rtBoxHistory.AppendText($"{operacion} = {txtDisplay.Text} \n");
                         break;
                     case "÷":
-                        txtDisplay.Text = (result / Double.Parse(txtDisplay.Text)).ToString();
+                        resultadoDecimal = (decimal)(result / Double.Parse(txtDisplay.Text));
+                        txtDisplay.Text = resultadoDecimal.ToString();
                         if (txtDisplay.Text != "∞")
                         {
-                            rtBoxHistory.AppendText($"{fstNum} {secNum} = {txtDisplay.Text} \n");
+                            rtBoxHistory.AppendText($"{operacion} = {txtDisplay.Text} \n");
                         }
                         break;
                     default:
                         txtDisplayProvi.Text = $"{txtDisplay.Text} = ";
                         break;
                 }
+
                 if (txtDisplay.Text == "∞")
                 {
                     txtDisplay.Text = "No se puede dividir entre 0";
-                } else
-                {
-                    result = Double.Parse(txtDisplay.Text);    //guarda el resultado para mostrarse en el display provicional de arriba para nuevas operaciones
                 }
-                operation = string.Empty;         //limpia el resultado
+                else
+                {
+                    // Guardar el cálculo en la base de datos
+                    Conexion conexion = new Conexion();
+                    conexion.GuardarCalculo(operacion, resultadoDecimal, operation);
+                }
+
+                result = Double.Parse(txtDisplay.Text);    // guarda el resultado para nuevas operaciones
+                operation = string.Empty;         // limpia la operación
             }
         }
+
 
         private void btnHistory_Click(object sender, EventArgs e)
         {
@@ -145,46 +165,74 @@ namespace Proyecto_1
         {
             Process.Start(new ProcessStartInfo("https://utp.ac.pa/") { UseShellExecute = true });   //al hacer clic al logo dirigir al link referido
         }
+        private void btnShowResults_Click(object sender, EventArgs e)
+        {
+            Form2 f2 = new Form2();
+            f2.Show();
+        }
 
         private void btnOtherOps_Click(object sender, EventArgs e)
         {
             Button but = (Button)sender;
             operation = but.Text;
+
+            // Captura el valor actual en el display ANTES de realizar la operación
+            string valorOriginal = txtDisplay.Text;
+            decimal resultadoDecimal = 0;
+
             switch (operation)
             {
                 case "√x":
-                    txtDisplayProvi.Text = $"√({txtDisplay.Text})";
-                    txtDisplay.Text = Convert.ToString(Math.Sqrt(Double.Parse(txtDisplay.Text)));
+                    txtDisplayProvi.Text = $"√({valorOriginal})";  // Mostrar en el display lo que estamos haciendo
+                    txtDisplay.Text = Convert.ToString(Math.Sqrt(Double.Parse(valorOriginal))); // Realizar la operación
                     if (txtDisplay.Text == "NaN")
                     {
                         txtDisplay.Text = "No es posible";
                     }
+                    else
+                    {
+                        resultadoDecimal = (decimal)Math.Sqrt(Double.Parse(valorOriginal)); // Guardar el resultado correcto
+                    }
                     break;
                 case "x²":
-                    txtDisplayProvi.Text = $"({txtDisplay.Text}^2)";
-                    txtDisplay.Text = Convert.ToString(Convert.ToDouble(txtDisplay.Text) * Convert.ToDouble(txtDisplay.Text));
+                    txtDisplayProvi.Text = $"({valorOriginal}^2)"; // Mostrar en el display lo que estamos haciendo
+                    txtDisplay.Text = Convert.ToString(Convert.ToDouble(valorOriginal) * Convert.ToDouble(valorOriginal)); // Realizar la operación
+                    resultadoDecimal = (decimal)(Convert.ToDouble(valorOriginal) * Convert.ToDouble(valorOriginal)); // Guardar el resultado correcto
                     break;
                 case "sin":
-                    txtDisplayProvi.Text = $"sin({txtDisplay.Text})";
-                    txtDisplay.Text = Convert.ToString(Math.Sin(Double.Parse(txtDisplay.Text)));
+                    txtDisplayProvi.Text = $"sin({valorOriginal})"; // Mostrar en el display lo que estamos haciendo
+                    txtDisplay.Text = Convert.ToString(Math.Sin(Double.Parse(valorOriginal)));
+                    resultadoDecimal = (decimal)Math.Sin(Double.Parse(valorOriginal)); // Guardar el resultado correcto
                     break;
                 case "cos":
-                    txtDisplayProvi.Text = $"cos({txtDisplay.Text})";
-                    txtDisplay.Text = Convert.ToString(Math.Sin(Double.Parse(txtDisplay.Text)));
+                    txtDisplayProvi.Text = $"cos({valorOriginal})"; // Mostrar en el display lo que estamos haciendo
+                    txtDisplay.Text = Convert.ToString(Math.Cos(Double.Parse(valorOriginal)));
+                    resultadoDecimal = (decimal)Math.Cos(Double.Parse(valorOriginal)); // Guardar el resultado correcto
                     break;
                 case "neg":
-                    if (txtDisplay.Text != "0")
+                    if (valorOriginal != "0")
                     {
-                        txtDisplay.Text = Convert.ToString(-1 * Convert.ToDouble(txtDisplay.Text));   //multiplica por -1 para convertir numero a negativo, en caso de ya serlo lo convierte en positivo
+                        txtDisplay.Text = Convert.ToString(-1 * Convert.ToDouble(valorOriginal)); // Realizar la operación
+                        resultadoDecimal = (decimal)(-1 * Convert.ToDouble(valorOriginal)); // Guardar el resultado correcto
                     }
                     break;
                 default:
                     break;
             }
+
             if (txtDisplay.Text != "No es posible")
             {
                 rtBoxHistory.AppendText($"{txtDisplayProvi.Text} = {txtDisplay.Text} \n");
+
+                // Guardar el cálculo en la base de datos solo si la operación fue exitosa
+                if (!string.IsNullOrEmpty(valorOriginal))
+                {
+                    Conexion conexion = new Conexion();
+                    conexion.GuardarCalculo(txtDisplayProvi.Text, resultadoDecimal, operation); // Guardar la operación con el valor original
+                }
             }
         }
+
+
     }
 }
