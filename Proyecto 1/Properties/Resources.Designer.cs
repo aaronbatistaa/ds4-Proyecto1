@@ -63,6 +63,16 @@ namespace Proyecto_1.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _6_logo_utp___rgb_oficial__1_ {
+            get {
+                object obj = ResourceManager.GetObject("6_logo_utp_-_rgb_oficial (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Close_multiply {
             get {
                 object obj = ResourceManager.GetObject("Close-multiply", resourceCulture);
@@ -93,9 +103,49 @@ namespace Proyecto_1.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_clear_symbol_15 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-clear-symbol-15", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_close_15 {
             get {
                 object obj = ResourceManager.GetObject("icons8-close-15", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_close_151 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-close-151", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_plus_slash_minus_15 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-plus-slash-minus-15", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_plus_slash_minus_18 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-plus-slash-minus-18", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
