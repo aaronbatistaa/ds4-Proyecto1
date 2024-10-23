@@ -87,14 +87,17 @@
             // btnUtp
             // 
             btnUtp.FlatAppearance.BorderSize = 0;
+            btnUtp.FlatAppearance.MouseDownBackColor = Color.Transparent;
             btnUtp.FlatAppearance.MouseOverBackColor = Color.FromArgb(32, 32, 32);
             btnUtp.FlatStyle = FlatStyle.Flat;
+            btnUtp.ForeColor = Color.Transparent;
             btnUtp.Image = Properties.Resources._6_logo_utp___rgb_oficial__1_;
             btnUtp.Location = new Point(3, 1);
             btnUtp.Name = "btnUtp";
             btnUtp.Size = new Size(43, 32);
             btnUtp.TabIndex = 3;
             btnUtp.UseVisualStyleBackColor = true;
+            btnUtp.Click += btnUtp_Click;
             // 
             // button2
             // 
@@ -259,6 +262,7 @@
             btnErase.Size = new Size(75, 60);
             btnErase.TabIndex = 5;
             btnErase.UseVisualStyleBackColor = false;
+            btnErase.Click += btnErase_Click;
             // 
             // btnClear
             // 
@@ -272,6 +276,7 @@
             btnClear.TabIndex = 5;
             btnClear.Text = "C";
             btnClear.UseVisualStyleBackColor = false;
+            btnClear.Click += btnClear_Click;
             // 
             // btnClearAll
             // 
@@ -285,6 +290,7 @@
             btnClearAll.TabIndex = 5;
             btnClearAll.Text = "CE";
             btnClearAll.UseVisualStyleBackColor = false;
+            btnClearAll.Click += btnClearAll_Click;
             // 
             // button6
             // 
@@ -296,8 +302,9 @@
             button6.Name = "button6";
             button6.Size = new Size(75, 60);
             button6.TabIndex = 5;
-            button6.Text = "button3";
+            button6.Text = "sin";
             button6.UseVisualStyleBackColor = false;
+            button6.Click += btnOtherOps_Click;
             // 
             // button7
             // 
@@ -309,8 +316,9 @@
             button7.Name = "button7";
             button7.Size = new Size(75, 60);
             button7.TabIndex = 6;
-            button7.Text = "button3";
+            button7.Text = "cos";
             button7.UseVisualStyleBackColor = false;
+            button7.Click += btnOtherOps_Click;
             // 
             // btnSquare
             // 
@@ -325,6 +333,7 @@
             btnSquare.TabIndex = 7;
             btnSquare.Text = "x²";
             btnSquare.UseVisualStyleBackColor = false;
+            btnSquare.Click += btnOtherOps_Click;
             // 
             // btnRoot
             // 
@@ -339,6 +348,7 @@
             btnRoot.TabIndex = 8;
             btnRoot.Text = "√x";
             btnRoot.UseVisualStyleBackColor = false;
+            btnRoot.Click += btnOtherOps_Click;
             // 
             // btnDivide
             // 
@@ -360,7 +370,7 @@
             btn4.BackColor = Color.FromArgb(59, 59, 59);
             btn4.FlatAppearance.BorderSize = 0;
             btn4.FlatStyle = FlatStyle.Flat;
-            btn4.Font = new Font("Gadugi", 16F);
+            btn4.Font = new Font("Gadugi", 14.25F, FontStyle.Bold);
             btn4.Location = new Point(5, 366);
             btn4.Margin = new Padding(0);
             btn4.Name = "btn4";
@@ -375,7 +385,7 @@
             btn5.BackColor = Color.FromArgb(59, 59, 59);
             btn5.FlatAppearance.BorderSize = 0;
             btn5.FlatStyle = FlatStyle.Flat;
-            btn5.Font = new Font("Gadugi", 16F);
+            btn5.Font = new Font("Gadugi", 14.25F, FontStyle.Bold);
             btn5.Location = new Point(85, 366);
             btn5.Margin = new Padding(0);
             btn5.Name = "btn5";
@@ -390,7 +400,7 @@
             btn6.BackColor = Color.FromArgb(59, 59, 59);
             btn6.FlatAppearance.BorderSize = 0;
             btn6.FlatStyle = FlatStyle.Flat;
-            btn6.Font = new Font("Gadugi", 16F);
+            btn6.Font = new Font("Gadugi", 14.25F, FontStyle.Bold);
             btn6.Location = new Point(165, 366);
             btn6.Margin = new Padding(0);
             btn6.Name = "btn6";
@@ -420,7 +430,7 @@
             btn7.BackColor = Color.FromArgb(59, 59, 59);
             btn7.FlatAppearance.BorderSize = 0;
             btn7.FlatStyle = FlatStyle.Flat;
-            btn7.Font = new Font("Gadugi", 16F);
+            btn7.Font = new Font("Gadugi", 14.25F, FontStyle.Bold);
             btn7.Location = new Point(5, 299);
             btn7.Margin = new Padding(0);
             btn7.Name = "btn7";
@@ -435,7 +445,7 @@
             btn8.BackColor = Color.FromArgb(59, 59, 59);
             btn8.FlatAppearance.BorderSize = 0;
             btn8.FlatStyle = FlatStyle.Flat;
-            btn8.Font = new Font("Gadugi", 16F);
+            btn8.Font = new Font("Gadugi", 14.25F, FontStyle.Bold);
             btn8.Location = new Point(85, 299);
             btn8.Margin = new Padding(0);
             btn8.Name = "btn8";
@@ -450,7 +460,7 @@
             btn9.BackColor = Color.FromArgb(59, 59, 59);
             btn9.FlatAppearance.BorderSize = 0;
             btn9.FlatStyle = FlatStyle.Flat;
-            btn9.Font = new Font("Gadugi", 16F);
+            btn9.Font = new Font("Gadugi", 14.25F, FontStyle.Bold);
             btn9.Location = new Point(165, 299);
             btn9.Margin = new Padding(0);
             btn9.Name = "btn9";
@@ -482,20 +492,24 @@
             btnNegative.BackColor = Color.FromArgb(59, 59, 59);
             btnNegative.FlatAppearance.BorderSize = 0;
             btnNegative.FlatStyle = FlatStyle.Flat;
+            btnNegative.ForeColor = Color.FromArgb(59, 59, 59);
             btnNegative.Image = Properties.Resources.icons8_plus_slash_minus_18;
             btnNegative.Location = new Point(5, 500);
             btnNegative.Margin = new Padding(0);
             btnNegative.Name = "btnNegative";
             btnNegative.Size = new Size(75, 60);
             btnNegative.TabIndex = 22;
+            btnNegative.Text = "neg";
+            btnNegative.TextAlign = ContentAlignment.BottomCenter;
             btnNegative.UseVisualStyleBackColor = false;
+            btnNegative.Click += btnOtherOps_Click;
             // 
             // btn0
             // 
             btn0.BackColor = Color.FromArgb(59, 59, 59);
             btn0.FlatAppearance.BorderSize = 0;
             btn0.FlatStyle = FlatStyle.Flat;
-            btn0.Font = new Font("Gadugi", 16F);
+            btn0.Font = new Font("Gadugi", 14.25F, FontStyle.Bold);
             btn0.Location = new Point(85, 500);
             btn0.Margin = new Padding(0);
             btn0.Name = "btn0";
@@ -540,7 +554,7 @@
             btn1.BackColor = Color.FromArgb(59, 59, 59);
             btn1.FlatAppearance.BorderSize = 0;
             btn1.FlatStyle = FlatStyle.Flat;
-            btn1.Font = new Font("Gadugi", 16F);
+            btn1.Font = new Font("Gadugi", 14.25F, FontStyle.Bold);
             btn1.Location = new Point(5, 433);
             btn1.Margin = new Padding(0);
             btn1.Name = "btn1";
@@ -555,7 +569,7 @@
             btn2.BackColor = Color.FromArgb(59, 59, 59);
             btn2.FlatAppearance.BorderSize = 0;
             btn2.FlatStyle = FlatStyle.Flat;
-            btn2.Font = new Font("Gadugi", 16F);
+            btn2.Font = new Font("Gadugi", 14.25F, FontStyle.Bold);
             btn2.Location = new Point(85, 433);
             btn2.Margin = new Padding(0);
             btn2.Name = "btn2";
@@ -570,7 +584,7 @@
             btn3.BackColor = Color.FromArgb(59, 59, 59);
             btn3.FlatAppearance.BorderSize = 0;
             btn3.FlatStyle = FlatStyle.Flat;
-            btn3.Font = new Font("Gadugi", 16F);
+            btn3.Font = new Font("Gadugi", 14.25F, FontStyle.Bold);
             btn3.Location = new Point(165, 433);
             btn3.Margin = new Padding(0);
             btn3.Name = "btn3";
