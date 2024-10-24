@@ -28,33 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
-            btnConnect = new Button();
+            dataGridView1 = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
-            // btnConnect
+            // dataGridView1
             // 
-            btnConnect.Location = new Point(298, 31);
-            btnConnect.Name = "btnConnect";
-            btnConnect.Size = new Size(210, 23);
-            btnConnect.TabIndex = 0;
-            btnConnect.Text = "Conectar con la Base de Datos";
-            btnConnect.UseVisualStyleBackColor = true;
-            btnConnect.Click += btnConnect_Click;
+            dataGridView1.BackgroundColor = Color.FromArgb(75, 75, 75);
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(12, 12);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.Size = new Size(776, 426);
+            dataGridView1.TabIndex = 0;
             // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(50, 50, 50);
             ClientSize = new Size(800, 450);
-            Controls.Add(btnConnect);
+            Controls.Add(dataGridView1);
             Name = "Form2";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Conexión con Base de Datos SQL Server Express 2019";
             Load += Form2_Load;
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Button btnConnect;
+        private DataGridView dataGridView1;
     }
 }

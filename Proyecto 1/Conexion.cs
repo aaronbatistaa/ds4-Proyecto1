@@ -17,7 +17,7 @@ namespace Proyecto_1
             {
                 cnx = new SqlConnection("Server=AARON\\SQLEXPRESS;Initial Catalog=CalculadoraDB;Encrypt =False;User ID=arong;Password =010223;TrustServerCertificate =True;Trusted_Connection =True"); 
                 cnx.Open();
-                MessageBox.Show("Conectado Correctamente");
+                //MessageBox.Show("Conectado Correctamente");
             } catch (Exception e)
             {
                 MessageBox.Show("ERROR: " + e.Message);

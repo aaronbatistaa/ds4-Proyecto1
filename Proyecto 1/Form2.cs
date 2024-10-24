@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data.SqlClient;
 using System.Windows.Forms;
 
 namespace Proyecto_1
@@ -17,15 +12,41 @@ namespace Proyecto_1
             InitializeComponent();
         }
 
-        private void btnConnect_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void Form2_Load(object sender, EventArgs e)
         {
-            Conexion c = new Conexion();
+            CargarDatos();
+        }
 
+        // Método para cargar los datos de la tabla Calculations en el DataGridView
+        private void CargarDatos()
+        {
+            try
+            {
+                // Crear conexión
+                Conexion conexion = new Conexion();
+                SqlConnection cnx = new SqlConnection("Server=AARON\\SQLEXPRESS;Initial Catalog=CalculadoraDB;Encrypt=False;User ID=arong;Password=010223;TrustServerCertificate=True;Trusted_Connection=True");
+
+                // Consulta SQL
+                string query = "SELECT * FROM Calculations";
+
+                // Adaptador para llenar el DataTable
+                SqlDataAdapter da = new SqlDataAdapter(query, cnx);
+
+                // DataTable para almacenar los resultados
+                DataTable dt = new DataTable();
+
+                // Llenar el DataTable con los resultados de la consulta
+                da.Fill(dt);
+
+                // Asignar los datos al DataGridView
+                dataGridView1.DataSource = dt;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar los datos: " + ex.Message);
+            }
         }
     }
 }
+
